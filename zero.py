@@ -16,10 +16,10 @@ def genBytes(num: int) -> bytes:
 
 
 def main() -> int:
-	# Send client challenge to AD
+	# Send client challenge to server
 	clientChallenge = genBytes(0)
 
-	# Send server challenge to AD
+	# Send server challenge to client
 	serverChallenge = genBytes(1)
 
 	# Generate 32 bytes session key (from secret key in practice)
@@ -47,7 +47,7 @@ def main() -> int:
 	decriptedClientCredential = serverCiphar2.decrypt(clientCredential)
 	# decriptedClientCredential = b'\x00' * 8
 
-	# Compare client challenge with encripted client credential
+	# Compare client challenge with decripted client credential
 	if (clientChallenge == decriptedClientCredential):
 		num = 1
 	else:
